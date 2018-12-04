@@ -259,28 +259,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-			
-			</span>
-		</div>
-	</div>
-		
+	</div>	
 
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
@@ -323,7 +302,9 @@
 									</div>
 								</div>
 							</div>
+							
 						</div>
+						
 					</div>
 				</div>
 					
@@ -338,10 +319,16 @@
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
-                              Descricao da casa aqui.
+								<p><b>Availability:</b> Ready to stay</p>
+                                <p><b>Condition:</b> New</p>
+                                <p><b>Dealer:</b> Capa</p>
+                                <p><b>Taxa de Juros(%):</b>26.3%</p>
 						</p>
 						
 						<!--  -->
+						
+						<input type="text" id="price" value="12000000" hidden/>
+						<input type="text" id="juros" value="26.3" hidden/>
 						<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
 										<div class="size-203 flex-c-m respon6">
@@ -399,7 +386,7 @@
 
 								<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<input type="text" id="rendimento" placeholder="Rendimento liquido em MT">
+											<input type="text" id="rendimento_liquido" placeholder="Rendimento liquido em MT">
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
@@ -411,21 +398,24 @@
 	
 									<div class="size-204 respon6-next">
 											<div class="rs1-select2 bor8 bg0">
-												<input type="text" id="rendimento" placeholder="Prestacao mensal em MT de outros creditos">
+												<input type="text" id="outras_dividas" placeholder="Prestacao mensal em MT de outros creditos">
 												<div class="dropDownSelect2"></div>
 											</div>
 										</div>
-								</div>
+							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									
-
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										<button type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" data-toggle="modal" data-target="#exampleModal" onclick="convertToMonths()"> 
+												Simular
+										</button>
+								<!--	<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Simular
 									</button>
+								-->	
 								</div>
-							</div>	
+							</div>
+								
 						</div>
 
 						<!--  -->
@@ -449,9 +439,11 @@
 							</a>
 						</div>
 					</div>
+					
 				</div>
+				
 			</div>
-
+			
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
@@ -1180,6 +1172,43 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
 		</div>
 	</div>
 
+	<!--================================================ Modal ====================================-->
+
+	<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Resultado de Simulacao</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<div class="col-md-offset-4 col-md-4">
+				<b>Rating: <a href="" id="good" hidden>Good</a><a href="" id="bad" hidden>Bad</a></b><img src="images/product-details/rating.png" alt="" /> 
+			</div>
+			<div class="row" style="overflow: scroll ;max-height: 250px; width: 100%;">
+				<table class="table" id="table_viewer">
+						<thead>
+								<tr>
+									<th>Rendimento líquido de prestações</th>
+									<th>Pestação Mensal (C+J)</th>
+									<th>Pestação Mensal (C+J) de outros creditos</th>
+									<th>Taxa de esforço</th>
+								</tr>
+							</thead>
+				  </table>
+		</div>
+		
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -1245,7 +1274,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "is added to wishlist !", "error");
 
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
@@ -1281,6 +1310,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="js/logic.js"></script>
+
 
 </body>
 </html>
