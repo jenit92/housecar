@@ -1684,5 +1684,36 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
+
+<!--==================== Page Starter =================================-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script language="javascript">
+       
+        window.onload = function(e){ 
+			swal({
+				title: "Aqui temos Casas e Carros para o seu bolso!",
+				text: "Comprar uma casa é um grande compromisso, por isso, antes de começar a procurar casa e comparar as taxas de juros, reserve um tempo para examinar sua situação actual e como ela pode mudar no futuro.",
+				icon: "info",
+				buttons: true,
+				dangerMode: true,
+				})
+				.then((willDelete) => {
+					swal({
+				title: "Nos importamos consigo!",
+				text: "Geralmente, recomendamos que você considere comprar uma casa somente se você planeja morar lá por pelo menos cinco anos, mas isso depende de muitos factores, como o mercado imobiliário, os preços de aluguel e a quantidade de capital que você tem em casa.",
+				icon: "info",
+				buttons: true,
+				dangerMode: true,
+				})
+				.then((willDelete) => {
+					swal("Bem vindo! Esperamos que encontre o que procura!", {
+				icon: "success",
+				})
+			})
+				})
+        }
+</script>
+
 </body>
 </html>
